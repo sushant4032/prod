@@ -91,27 +91,24 @@ app.controller('myController', function ($scope, $http) {
 
 		angular.forEach($scope.shovel_names, function (x) {
 			var temp = new Shovel(x);
-			temp.initialize();
 			$scope.shovels.push(temp);
 		});
 		angular.forEach($scope.dragline_names, function (x) {
 			var temp = new Dragline(x);
-			temp.initialize();
 			$scope.draglines.push(temp);
 		});
 		angular.forEach($scope.surface_miner_names, function (x) {
 			var temp = new SurfaceMiner(x);
-			temp.initialize();
 			$scope.surfaceMiners.push(temp);
 		});
 		angular.forEach($scope.outsourcing_names, function (x) {
 			var temp = new Outsourcing(x);
-			temp.initialize();
 			$scope.outsourcings.push(temp);
 		});
 
 		$scope.disp = new Dispatch('disp');
-		$scope.disp.initialize();
+		$scope.mnp = new Manpower('mnp');
+
 
 		$scope.shovels_total = new Shovel('total');
 		$scope.draglines_total = new Dragline('total');
@@ -148,7 +145,8 @@ app.controller('myController', function ($scope, $http) {
 			draglines: [],
 			surfaceMiners: [],
 			outsourcings: [],
-			disp:$scope.disp
+			disp: $scope.disp,
+			mnp:$scope.mnp
 		};
 		$scope.shovels_total.initialize();
 		$scope.draglines_total.initialize();
@@ -178,6 +176,7 @@ app.controller('myController', function ($scope, $http) {
 		});
 
 		$scope.disp.inflate();
+		$scope.mnp.inflate();
 
 		$scope.shovels_total.inflate();
 		$scope.draglines_total.inflate();

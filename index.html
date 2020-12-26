@@ -41,6 +41,7 @@
         <a id="outsourcing-tab" href="#" onmouseDown="openSection('outsourcing')" class="tab  ">Outsourcing</i></a>
         <a id="surface-miner-tab" href="#" onmouseDown="openSection('surface-miner')" class="tab  ">SM /
             Dispatch</i></a>
+        <a id="misc-tab" href="#" onmouseDown="openSection('misc')" class="tab  ">Misc</i></a>
         <a id="summary-tab" href="#" onmouseDown="openSection('summary')" class="tab  ">Summary</a>
     </div>
 
@@ -347,6 +348,24 @@
 
 
 
+        </section>
+
+        <section class="section" id="misc">
+            <table class="w3-table-all">
+                <tr>
+                    <th> Section </th>
+                    <th>East</th>
+                    <th>West</th>
+                    <th>Total</th>
+                </tr>
+                <tr ng-repeat="(y,x) in mnp.data">
+                    <td>{{y}}</td>
+                    <td><input type="number" name="" id="" ng-model=x[0] ng-change="ref()"></td>
+                    <td><input type="number" name="" id="" ng-model=x[1] ng-change="ref()"></td>
+                    <td>{{x[2]}}</td>
+                </tr>
+
+            </table>
         </section>
 
 

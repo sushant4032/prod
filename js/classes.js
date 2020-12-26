@@ -3,18 +3,11 @@ class Shovel {
         this.name = name;
         this.east_factor = [45, 55, 90, 32, 37, 60];
         this.west_factor = [45, 40, 32, 27];
+        this.initialize();
     }
-    set = function (obj) {
-        this.data = obj;
-    }
-
-    get = function () {
-        return this.data;
-    }
-
     initialize = function () {
         this.data = {
-            name:this.name,
+            name: this.name,
             east: false,
             west: false,
             seam: null,
@@ -28,8 +21,16 @@ class Shovel {
             west_coal_85: null,
             west_ob_100: null,
             west_ob_85: null,
+            remark: ""
         };
     };
+    set = function (obj) {
+        this.data = obj;
+    }
+
+    get = function () {
+        return this.data;
+    }
 
     remove = function (arg) {
         if (arg == 'east') {
@@ -56,18 +57,18 @@ class Shovel {
         this.qty = {
 
             east_coal_100: this.data.east_coal_100 * this.east_factor[0],
-            east_coal_120: this.data.east_coal_120 * this.east_factor[1],   // to confirm
-            east_coal_190: this.data.east_coal_120 * this.east_factor[2],   // to be changed
+            east_coal_120: this.data.east_coal_120 * this.east_factor[1],
+            east_coal_190: this.data.east_coal_120 * this.east_factor[2],
 
             east_ob_100: this.data.east_ob_100 * this.east_factor[3],
-            east_ob_120: this.data.east_ob_120 * this.east_factor[4],   // to confirm
-            east_ob_190: this.data.east_ob_190 * this.east_factor[5],   // to be changed
+            east_ob_120: this.data.east_ob_120 * this.east_factor[4],
+            east_ob_190: this.data.east_ob_190 * this.east_factor[5],
 
             west_coal_100: this.data.west_coal_100 * this.west_factor[0],
-            west_coal_85: this.data.west_coal_85 * this.west_factor[1],   // to be changed
+            west_coal_85: this.data.west_coal_85 * this.west_factor[1],
 
             west_ob_100: this.data.west_ob_100 * this.west_factor[2],
-            west_ob_85: this.data.west_ob_85 * this.west_factor[3],    // to be changed
+            west_ob_85: this.data.west_ob_85 * this.west_factor[3],
 
 
             east_coal: this.data.east_coal_100 * this.east_factor[0] + this.data.east_coal_120 * this.east_factor[1] + this.data.east_coal_190 * this.east_factor[2],
@@ -109,116 +110,101 @@ class Shovel {
 class Dragline {
     constructor(name) {
         this.name = name;
+        this.initialize();
     }
-    set = function (arr) {
+    initialize = function () {
         this.data = {
-            name: arr[0],
-            solid: arr[1],
-            rehandling: arr[2],
-            wrk: arr[3],
-            mnt: arr[4],
-            bd: arr[5],
-            idl: arr[6],
-            remark: arr[7]
-        };
+            name: this.name,
+            solid: null,
+            rehandling: null,
+            wrk: null,
+            mnt: null,
+            bdn: null,
+            remark: null
+        }
+    };
+    set = function (obj) {
+        this.data = obj;
     }
 
     get = function () {
-        var arr = [
-            this.data.name,
-            this.data.solid,
-            this.data.rehandling,
-            this.data.wrk,
-            this.data.mnt,
-            this.data.bd,
-            this.data.idl,
-            this.data.remark
-        ];
-        return arr;
+        return this.data;
     }
 
-    initialize = function () {
-        this.set([this.name, null, null, null, null, null, null, null]);
-    };
     inflate = function () {
-        this.solid_qty = this.data.solid * 15;
-        this.rehandling_qty = this.data.rehandling * 15;
+        this.qty = {
+            solid: this.data.solid * 15,
+            rehandling: this.data.rehandling * 15
+        }
     };
     sum = function (x) {
         this.data.solid += x.data.solid;
         this.data.rehandling += x.data.rehandling;
-        this.data.remark += ", ";
-        this.data.remark += x.data.remark;
     }
 }
 
 class SurfaceMiner {
     constructor(name) {
         this.name = name;
-    }
-    set = function (arr) {
-        this.data = {
-            name: arr[0],
-            cutting: arr[1],
-            prod: arr[2],
-            wrk: arr[3],
-            remark: arr[4]
-        };
-    }
-    get = function () {
-        var arr = [
-            this.data.name,
-            this.data.cutting,
-            this.data.prod,
-            this.data.wrk,
-            this.data.remark
-        ];
-        return arr;
+        this.initialize();
     }
     initialize = function () {
-        this.set([this.name, null, null, null, null, null]);
+        this.data = {
+            name: this.name,
+            cutting: null,
+            prod: null,
+            wrk: null,
+            remark: null
+        }
     };
+    set = function (obj) {
+        this.data = obj;
+    }
+    get = function () {
+        return this.data;
+    }
+
     sum = function (x) {
         this.data.wrk += x.data.wrk;
         this.data.cutting += x.data.cutting;
         this.data.prod += x.data.prod;
-        this.data.remark += ", ";
-        this.data.remark += x.data.remark;
     }
 }
 
 class Outsourcing {
     constructor(name) {
         this.name = name;
-    }
-    set = function (arr) {
-        this.data = {
-            name: arr[0],
-            qty: arr[1],
-            remark: arr[2]
-        };
-    }
-    get = function () {
-        var arr = [
-            this.data.name,
-            this.data.qty,
-            this.data.remark
-        ];
-        return arr;
+        this.initialize();
     }
     initialize = function () {
-        this.set([this.name, null, null, null, null])
+        this.data = {
+            name: this.name,
+            qty: null,
+            remark: null
+        }
     };
+    set = function (obj) {
+        this.data = obj;
+    }
+    get = function () {
+        return this.obj;
+    }
+
     sum = function (x) {
         this.data.qty += x.data.qty;
-        this.data.remark += ", ";
-        this.data.remark += x.data.remark;
     }
 }
 
 class Dispatch {
     constructor(name) {
         this.name = name;
+        this.initialize();
+    }
+    initialize = function () {
+        this.data = {
+            trips: [null, null, null, null, null, null, null],
+            qty: [null, null, null, null, null, null, null]
+        }
     }
     set = function (obj) {
         this.data = obj;
@@ -227,14 +213,8 @@ class Dispatch {
         this.data;
     }
 
-    initialize = function () {
-        this.data = {
-            trips: [null, null, null, null, null, null, null],
-            qty: [null, null, null, null, null, null, null]
-        }
-    }
-
     inflate = function () {
+
         this.chp = this.data.qty[2] + this.data.qty[3] + this.data.qty[5];
     };
 
@@ -244,4 +224,35 @@ class Dispatch {
             this.data.qty[i] += x.data.qty[i];
         }
     }
+}
+
+class Manpower {
+    constructor(name) {
+        this.name = name;
+        this.initialize();
+    }
+    initialize = function () {
+        this.data = {
+            'SHOVEL OPTR': [null, null],
+            'DUMPER OPTR': [null, null],
+            'DOZER OPTR': [null, null],
+            'GRADER OPTR': [null, null],
+            'CABLE MAN': [null, null],
+            'and shand': [null, null],
+        }
+    }
+
+    get = function () {
+        return this.data;
+    }
+    set = function (obj) {
+        this.data = obj;
+    }
+    inflate = function () {
+
+        Object.keys(this.data).forEach(x => {
+            this.data[x][2] = this.data[x][0] + this.data[x][1];
+        })
+    }
+
 }
