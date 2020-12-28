@@ -1,3 +1,11 @@
+const seams = ['PUREWA TOP EAST', 'PUREWA TOP WEST', 'PUREWA BOTTOM EAST', 'PUREWA BOTTOM WEST', 'TURRA EAST', 'TURRA WEST'];
+
+function ran(min=0, max=100) {
+    let r = min + Math.floor((max - min) * Math.random());
+    return r;
+}
+
+
 class Shovel {
     constructor(name) {
         this.name = name;
@@ -105,6 +113,26 @@ class Shovel {
         this.data.west_ob_100 += x.data.west_ob_100;
         this.data.west_ob_85 += x.data.west_ob_85;
     };
+
+    randomize = function () {
+        this.data = {
+            name: this.name,
+            east: true,
+            west: true,
+            seam: seams[ran(0,5)],
+            east_coal_100: ran(),
+            east_coal_120: ran(),
+            east_coal_190: ran(),
+            east_ob_100: ran(),
+            east_ob_120: ran(),
+            east_ob_190: ran(),
+            west_coal_100: ran(),
+            west_coal_85: ran(),
+            west_ob_100: ran(),
+            west_ob_85: ran(),
+            remark: ""
+        };
+    }
 }
 
 class Dragline {
@@ -141,6 +169,18 @@ class Dragline {
         this.data.solid += x.data.solid;
         this.data.rehandling += x.data.rehandling;
     }
+
+    randomize = function () {
+        this.data = {
+            name: this.name,
+            solid: ran(),
+            rehandling: ran(),
+            wrk: ran(),
+            mnt: ran(),
+            bdn: ran(),
+            remark: ran()
+        }
+    };
 }
 
 class SurfaceMiner {
@@ -169,6 +209,15 @@ class SurfaceMiner {
         this.data.cutting += x.data.cutting;
         this.data.prod += x.data.prod;
     }
+    randomize = function () {
+        this.data = {
+            name: this.name,
+            cutting: ran(),
+            prod: ran(),
+            wrk: ran(),
+            remark: ran()
+        }
+    };
 }
 
 class Outsourcing {
@@ -193,7 +242,15 @@ class Outsourcing {
     sum = function (x) {
         this.data.qty += x.data.qty;
     }
+    randomize = function () {
+        this.data = {
+            name: this.name,
+            qty: ran(),
+            remark: ran()
+        }
+    };
 }
+
 
 class Dispatch {
     constructor(name) {
@@ -207,14 +264,20 @@ class Dispatch {
         }
     }
     set = function (obj) {
-        this.data = obj;
+        if (obj) {
+            this.data = obj;
+        }
+        else {
+            console.log('ERROR : Blank object');
+        }
+     
     }
     get = function () {
         this.data;
     }
 
     inflate = function () {
-
+        console.log(this)
         this.chp = this.data.qty[2] + this.data.qty[3] + this.data.qty[5];
     };
 
@@ -222,6 +285,12 @@ class Dispatch {
         for (i = 0; i < this.data.trips.length; i++) {
             this.data.trips[i] += x.data.trips[i];
             this.data.qty[i] += x.data.qty[i];
+        }
+    }
+    randomize = function () {
+        this.data = {
+            trips: [ran(), ran(), ran(), ran(), ran(), ran(), ran()],
+            qty: [ran(), ran(), ran(), ran(), ran(), ran(), ran()]
         }
     }
 }
@@ -253,6 +322,17 @@ class Manpower {
         Object.keys(this.data).forEach(x => {
             this.data[x][2] = this.data[x][0] + this.data[x][1];
         })
+    }
+
+   randomize = function () {
+        this.data = {
+            'SHOVEL OPTR': [ran(), ran()],
+            'DUMPER OPTR': [ran(), ran()],
+            'DOZER OPTR': [ran(), ran()],
+            'GRADER OPTR': [ran(), ran()],
+            'CABLE MAN': [ran(), ran()],
+            'and shand': [ran(), ran()],
+        }
     }
 
 }

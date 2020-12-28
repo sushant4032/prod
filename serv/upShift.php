@@ -1,9 +1,4 @@
  <?php
- $server="localhost";
-    $user="root";
-    $pwd="";
-    $db="dchlive";
-    $conn = new mysqli($server,$user,$pwd,$db);
     if($conn->connect_error){
         die('Connection Error');
     }

@@ -9,5 +9,5 @@
 
     header("Access-Control-Allow-Headers: content-type");
 
-    echo file_get_contents('liveData.json');
+    echo file_get_contents('shiftData.json');
 ?>

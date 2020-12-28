@@ -84,9 +84,13 @@ app.controller('myController', function ($scope, $http) {
 		$scope.draglines = [];
 		$scope.surfaceMiners = [];
 		$scope.outsourcings = [];
+		$scope.disp = new Dispatch('disp');
+		$scope.mnp = new Manpower('mnp');
+
 		$scope.status = '----------';
 		$scope.packet_string = "ready";
 		$scope.obj = { name: 'scope object' };
+
 
 
 		angular.forEach($scope.shovel_names, function (x) {
@@ -106,8 +110,7 @@ app.controller('myController', function ($scope, $http) {
 			$scope.outsourcings.push(temp);
 		});
 
-		$scope.disp = new Dispatch('disp');
-		$scope.mnp = new Manpower('mnp');
+
 
 
 		$scope.shovels_total = new Shovel('total');
@@ -135,6 +138,8 @@ app.controller('myController', function ($scope, $http) {
 		angular.forEach(t.outsourcings, function (x, i) {
 			$scope.outsourcings[i].set(x);
 		});
+		$scope.disp.set(t.disp);
+		$scope.mnp.set(t.mnp)
 		ref();
 	};
 
@@ -146,7 +151,7 @@ app.controller('myController', function ($scope, $http) {
 			surfaceMiners: [],
 			outsourcings: [],
 			disp: $scope.disp,
-			mnp:$scope.mnp
+			mnp: $scope.mnp
 		};
 		$scope.shovels_total.initialize();
 		$scope.draglines_total.initialize();
@@ -207,33 +212,27 @@ app.controller('myController', function ($scope, $http) {
 		pop();
 	}
 
-	function randomValues() {
-		t = $scope.obj;
+	$scope.randVals=function() {
+		t = $scope;
 		angular.forEach(t.shovels, function (x, i) {
-			t.shovels[i][1] = true;
-			t.shovels[i][2] = true;
-			t.shovels[i][3] = Math.floor(100 * Math.random());
-			t.shovels[i][4] = Math.floor(100 * Math.random());
-			t.shovels[i][5] = Math.floor(100 * Math.random());
-			t.shovels[i][6] = Math.floor(100 * Math.random());
-			t.shovels[i][7] = Math.floor(100 * Math.random());
-			t.shovels[i][8] = Math.floor(100 * Math.random());
-			t.shovels[i][9] = Math.floor(100 * Math.random());
-			t.shovels[i][10] = Math.floor(100 * Math.random());
+			x.randomize();
 		});
 		angular.forEach(t.draglines, function (x, i) {
-			t.draglines[i][1] = Math.floor(100 * Math.random());
-			t.draglines[i][2] = Math.floor(100 * Math.random());
+			x.randomize();
 
 		});
 		angular.forEach(t.surfaceMiners, function (x, i) {
-			t.surfaceMiners[i][1] = Math.floor(100 * Math.random());
-			t.surfaceMiners[i][2] = Math.floor(100 * Math.random());
-			t.surfaceMiners[i][3] = Math.floor(100 * Math.random());
+			x.randomize();
 		});
 		angular.forEach(t.outsourcings, function (x, i) {
-			t.outsourcings[i][1] = Math.floor(100 * Math.random());
+			x.randomize();
 		});
+		angular.forEach(t.outsourcings, function (x, i) {
+			x.randomize();
+		});
+		t.disp.randomize();
+		t.mnp.randomize();
+		ref();
 	}
 
 	function prev() {
