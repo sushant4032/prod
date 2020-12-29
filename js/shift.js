@@ -43,6 +43,16 @@ app.controller('myController', function ($scope, $http) {
 			'DL-WEST'
 		];
 		$scope.seams = ['PUREWA TOP EAST', 'PUREWA TOP WEST', 'PUREWA BOTTOM EAST', 'PUREWA BOTTOM WEST', 'TURRA EAST', 'TURRA WEST'];
+		$scope.timing_names = [
+			'SHOVEL-EAST',
+			'SHOVEL-WEST',
+			'DUMPER-EAST',
+			'DUMPER-WEST',
+			'JYOTI-DL',
+			'PAWAN-DL',
+			'VINDHYS-DL',
+			'JWALA-DL',
+		]
 	}
 
 	function presentShift() {
@@ -88,6 +98,7 @@ app.controller('myController', function ($scope, $http) {
 		$scope.outsourcings = [];
 		$scope.disp = new Dispatch('disp');
 		$scope.mnp = new Manpower('mnp');
+		$scope.timings = [];
 
 		$scope.status = '----------';
 		$scope.packet_string = "ready";
@@ -111,7 +122,10 @@ app.controller('myController', function ($scope, $http) {
 			var temp = new Outsourcing(x);
 			$scope.outsourcings.push(temp);
 		});
-
+		angular.forEach($scope.timing_names, function (x) {
+			var temp = new Timings(x);
+			$scope.timings.push(temp);
+		});
 
 
 
@@ -154,7 +168,8 @@ app.controller('myController', function ($scope, $http) {
 			surfaceMiners: [],
 			outsourcings: [],
 			disp: $scope.disp,
-			mnp: $scope.mnp
+			mnp: $scope.mnp,
+			timings: []
 		};
 		$scope.shovels_total.initialize();
 		$scope.draglines_total.initialize();
@@ -182,6 +197,10 @@ app.controller('myController', function ($scope, $http) {
 			$scope.packet.outsourcings.push(x.get());
 			$scope.outsourcings_total.sum(x);
 		});
+		angular.forEach($scope.timings, function (x) {
+			$scope.packet.timings.push(x.get());
+		});
+
 
 		$scope.disp.inflate();
 		$scope.mnp.inflate();
@@ -207,13 +226,7 @@ app.controller('myController', function ($scope, $http) {
 		}
 	}
 
-	function dummy() {
-		var l = '{"shift":171,"shovels":[["P&H_1",true,true,54,77,51,35,10,21,41,65],["P&H_2",true,true,53,72,82,69,63,76,40,67],["P&H_3",true,true,10,85,33,64,87,51,14,59],["P&H_4",true,true,2,11,77,21,59,77,22,93],["P&H_5",true,true,67,35,71,53,24,25,67,28],["P&H_6",true,true,4,18,42,97,54,85,67,28],["P&H_7",true,true,13,81,7,94,69,92,21,59],["P&H_8",true,true,7,8,66,27,96,36,2,29],["P&H_9",true,true,64,32,90,75,9,44,85,73],["P&H_10",true,true,73,85,48,34,48,85,65,83]],"draglines":[["Jyoti",42,85,null,null,null,null,"Remark1"],["Pawan",81,7,null,null,null,null,"Remark2"],["Vindhya",57,40,null,null,null,null,"Remark3"],["Jwala",11,39,null,null,null,null,"Remark4"]],"surfaceMiners":[["LnT",76,0,76,"Remark1"]],"outsourcings":[["BGR-EAST-APT",3,"Remark1"],["GAJRAJ-WEST-APT",36,"Remark2"],["GAJRAJ-EAST-APB",12,"Remark3"],["GAJRAJ-WEST-APB",10,"Remark4"],["DL-EAST",5,"Remark5"],["DL-WEST",9,"Remark6"]]}';
 
-		$scope.obj = JSON.parse(l);
-		randomValues();
-		pop();
-	}
 
 	$scope.randVals = function () {
 		t = $scope;
@@ -231,6 +244,9 @@ app.controller('myController', function ($scope, $http) {
 			x.randomize();
 		});
 		angular.forEach(t.outsourcings, function (x, i) {
+			x.randomize();
+		});
+		angular.forEach(t.timings, function (x, i) {
 			x.randomize();
 		});
 		t.disp.randomize();

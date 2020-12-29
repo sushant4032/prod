@@ -358,6 +358,7 @@
         </section>
 
         <section class="section" id="misc">
+            <p class="table-name">Current Shift Manpower</p>
             <table class="w3-table-all">
                 <tr>
                     <th> Section </th>
@@ -373,6 +374,22 @@
                 </tr>
 
             </table>
+
+            <p class="table-name"> hemm avl-utl report  </p>
+            <table>
+                <tr>
+                    <th>HEMM</th>
+                    <th>AVL HRS</th>
+                    <th>WRK HRS</th>
+                </tr>
+                <tr ng-repeat="x in timings">
+                    <td>{{x.name}}</td>
+                    <td><input type="number" name="" id="" ng-model="x.data.avl"></td>
+                    <td><input type="number" name="" id="" ng-model="x.data.wrk"></td>
+                </tr>
+            </table>
+
+
         </section>
 
 

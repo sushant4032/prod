@@ -336,3 +336,34 @@ class Manpower {
     }
 
 }
+
+class Timings {
+    constructor(name) {
+        this.name = name;
+        this.initialize();
+    }
+    initialize = function () {
+        this.data = {
+            avl: null,
+            wrk:null
+        }
+    }
+
+    get = function () {
+        return this.data;
+    }
+    set = function (obj) {
+        this.data = obj;
+    }
+    inflate = function () {
+    }
+
+    randomize = function () {
+        this.data = {
+            name:this.name,
+            avl: ran(),
+            wrk: ran()
+        }
+    }
+
+}
