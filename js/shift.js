@@ -3,21 +3,23 @@ var app = angular.module('myApp', []);
 
 app.controller('myController', function ($scope, $http) {
 
-	$scope.login = function () {
-		console.log($scope.pin);
-		if ($scope.pin == "1234") {
-			$scope.user = "Viewpoint";
-			$scope.auth = true;
-		}
-		else if ($scope.pin == "1111") {
-			$scope.user = "Admin";
-			$scope.auth = true;
-		}
-		else {
-			$scope.pin = ""
-		}
 
+	const appVersion = 1;
+	const server = 'prod';    // dev or prod
+
+	if (server == 'dev') {
+		const origin = window.location.hostname;
+		const path = "/prod/";
+		$scope.downUrl = "http://" + origin + path + 'serv/downShift.php';
+		$scope.upUrl = "http://" + origin + path + 'serv/upShift.php';
 	}
+	else if (server == 'prod') {
+		$scope.upUrl = 'serv/upShift.php';
+		$scope.downUrl = 'serv/downShift.php';
+	}
+
+
+
 
 
 	openSection('shovel-east');
@@ -124,6 +126,7 @@ app.controller('myController', function ($scope, $http) {
 		appInitialize();
 		fetch();
 	}
+
 	function pop() {
 		var t = $scope.obj;
 		angular.forEach(t.shovels, function (x, i) {
@@ -212,7 +215,7 @@ app.controller('myController', function ($scope, $http) {
 		pop();
 	}
 
-	$scope.randVals=function() {
+	$scope.randVals = function () {
 		t = $scope;
 		angular.forEach(t.shovels, function (x, i) {
 			x.randomize();
@@ -286,11 +289,31 @@ app.controller('myController', function ($scope, $http) {
 	function fetch() {
 		var s = $scope.shift;
 		console.log("Data requested for " + s);
-		var obj = JSON.parse(localStorage.getItem(s));
-		if (obj) {
-			$scope.obj = obj;
-			pop();
-		}
+		var payload = {};
+		var req = {
+			method: 'GET',
+			url: $scope.downUrl,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: payload
+		};
+
+		$http(req).then(
+			function (res) {
+				console.log(res.data);
+				e = res.data;
+				// let remoteVer = +e.ver || 0;
+				// let localVer = +localStorage.getItem('localVer') || 0;
+				// if (remoteVer != localVer) {
+				// 	console.log('VERSION MISMATCH !... RELOADING')
+				// 	localStorage.setItem('localVer', remoteVer);
+				// 	setTimeout(autoReload, 5000);
+				// }
+			},
+			function () {
+				console.log("fetch failed");
+			})
 	}
 
 	function sub() {
