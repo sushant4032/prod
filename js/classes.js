@@ -277,7 +277,7 @@ class Dispatch {
     }
 
     inflate = function () {
-        console.log(this)
+
         this.chp = this.data.qty[2] + this.data.qty[3] + this.data.qty[5];
     };
 

@@ -28,7 +28,7 @@ app.controller('myController', function ($scope, $http) {
 
 
 	function appGlobals() {
-		$scope.begin = new Date(2019, 9, 5, 6, 0, 0, 0);
+		$scope.begin = new Date(2019, 3, 1, 6, 0, 0, 0);
 		$scope.shovel_names = ['P&H-06', 'P&H-07', 'P&H-10',
 			'P&H-11', 'P&H-12', 'P&H-13', 'P&H-14', 'P&H-15',
 			'P&H-16', 'P&H-17', 'P&H-18', 'P&H-19', 'HIM-20', 'PC-TATA', 'KOMATSU PC', 'LAXMAN PC', 'PL-06', 'PL-07'];
@@ -124,7 +124,7 @@ app.controller('myController', function ($scope, $http) {
 
 	function getData() {
 		appInitialize();
-		fetch();
+		// fetch();
 	}
 
 	function pop() {
@@ -190,7 +190,7 @@ app.controller('myController', function ($scope, $http) {
 		$scope.draglines_total.inflate();
 
 		$scope.packet_string = JSON.stringify($scope.packet);
-		console.log($scope.packet_string);
+		// console.log($scope.packet_string);
 	}
 
 	function populate() {
@@ -200,10 +200,10 @@ app.controller('myController', function ($scope, $http) {
 
 	function populate_helper() {
 		if ($scope.shift >= 0) {
-			dummy();
-			sub();
+			$scope.randVals();
+			let result = $scope.sub();
 			$scope.shift--;
-			setTimeout(populate_helper(), 1);
+			setTimeout(populate_helper, 10);
 		}
 	}
 
@@ -260,9 +260,6 @@ app.controller('myController', function ($scope, $http) {
 	}
 
 
-	$scope.sub = function () {
-		sub();
-	};
 
 
 	$scope.populate = function () {
@@ -286,7 +283,7 @@ app.controller('myController', function ($scope, $http) {
 
 
 
-	function fetch() {
+	$scope.fetch = function () {
 		var s = $scope.shift;
 		console.log("Data requested for " + s);
 		var payload = {};
@@ -316,12 +313,38 @@ app.controller('myController', function ($scope, $http) {
 			})
 	}
 
-	function sub() {
-		console.log('Submitting for' + $scope.shift);
-		localStorage.setItem($scope.shift, $scope.packet_string);
-		var k = localStorage.getItem($scope.shift);
-		if (k) {
-			$scope.status = "Record set for " + $scope.shift;
-		}
+	$scope.sub = function () {
+		console.log('Uploading:', $scope.shift);
+		// console.log($scope.packet);
+		let obj = {
+			shift: $scope.shift,
+			ver: appVersion,
+			user: $scope.user,
+			uid: localStorage.getItem('xxx'),
+			stamp: new Date().getTime(),
+			time: new Date().toLocaleString(),
+			packet: $scope.packet,
+		};
+		// console.log(obj);
+
+		var req = {
+			method: 'POST',
+			url: $scope.upUrl,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: obj
+		};
+
+		$http(req).then(
+			function (res) {
+				e = res.data;
+				console.log(e);
+				return true;
+			},
+			function () {
+				console.log("upload failed....");
+				return false;
+			})
 	}
 });
