@@ -1,6 +1,6 @@
 const seams = ['PUREWA TOP EAST', 'PUREWA TOP WEST', 'PUREWA BOTTOM EAST', 'PUREWA BOTTOM WEST', 'TURRA EAST', 'TURRA WEST'];
 
-function ran(min=0, max=100) {
+function ran(min = 0, max = 100) {
     let r = min + Math.floor((max - min) * Math.random());
     return r;
 }
@@ -119,7 +119,7 @@ class Shovel {
             name: this.name,
             east: true,
             west: true,
-            seam: seams[ran(0,5)],
+            seam: seams[ran(0, 5)],
             east_coal_100: ran(),
             east_coal_120: ran(),
             east_coal_190: ran(),
@@ -270,7 +270,7 @@ class Dispatch {
         else {
             console.log('ERROR : Blank object');
         }
-     
+
     }
     get = function () {
         this.data;
@@ -324,7 +324,7 @@ class Manpower {
         })
     }
 
-   randomize = function () {
+    randomize = function () {
         this.data = {
             'SHOVEL OPTR': [ran(), ran()],
             'DUMPER OPTR': [ran(), ran()],
@@ -345,7 +345,7 @@ class Timings {
     initialize = function () {
         this.data = {
             avl: null,
-            wrk:null
+            wrk: null
         }
     }
 
@@ -360,7 +360,7 @@ class Timings {
 
     randomize = function () {
         this.data = {
-            name:this.name,
+            name: this.name,
             avl: ran(),
             wrk: ran()
         }

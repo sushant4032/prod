@@ -375,7 +375,7 @@
 
             </table>
 
-            <p class="table-name"> hemm avl-utl report  </p>
+            <p class="table-name"> hemm avl-utl report </p>
             <table>
                 <tr>
                     <th>HEMM</th>
@@ -388,201 +388,323 @@
                     <td><input type="number" name="" id="" ng-model="x.data.wrk"></td>
                 </tr>
             </table>
-
-
         </section>
 
 
+        <!-- /////////////////////////////////////////////////////////////////////////////////// SUMMARY /// -->
         <section class="section" id="summary">
-
             <div>
+                <p class="table-name">Shift Production Summary</p>
                 <table class="w3-table-all">
-                    <tr class="">
-                        <td colspan="10">Summary</td>
-                    </tr>
                     <tr class="head">
                         <td></td>
-                        <td>Coal</td>
-                        <td>Deptt OB</td>
-                        <td>Outs OB</td>
-                    </tr>
-                    <tr class="unit">
-                        <td></td>
-                        <td>(Te)</td>
-                        <td>(cum)</td>
-                        <td>(cum)</td>
+                        <td>Coal (Te)</td>
+                        <td>OBR (cum)</td>
                     </tr>
                     <tr>
-                        <td>Shovel</td>
-                        <td>{{shovels_total.qty.coal}}</td>
-                        <td>{{shovels_total.qty.ob}}</td>
-                        <td></td>
+                        <td>East Section</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>West Section</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>Total S/D</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                    </tr>
+                    <tr>
+                        <td>Surface Miner</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
                     </tr>
                     <tr>
                         <td>Dragline</td>
-                        <td></td>
-                        <td>{{draglines_total.solid_qty}}</td>
-                        <td></td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
                     </tr>
                     <tr>
-                        <td>S Miners</td>
-                        <td>{{surfaceMiners_total.data.prod}}</td>
+                        <td>Total Deptt</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                    </tr>
+                    <tr>
+                        <td>Outsourcing</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                    </tr>
+                    <tr>
+                        <td>Grand Total</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                    </tr>
+                </table>
+
+                <p class="table-name">Dispatch</p>
+                <table class="data w3-table-all">
+                    <tr>
+                        <td>Rakes</td>
+                        <td>Silo: {{}}</td>
+                        <td>WW: {{}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
 
-                    <tr>
-                        <td>Out Src</td>
+                    <tr class="total ">
                         <td></td>
-                        <td></td>
-                        <td>{{outsourcings_total.data.qty}}</td>
+                        <td>Trips</td>
+                        <td>Quantity</td>
+                    </tr>
+                    <tr class="data">
+                        <td>Surface Miner Transport</td>
+
+                        <td><input ng-model="disp.data.trips[0]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[0]" ng-change="ref()" type="number" class=" " />
+                        </td>
+                    </tr>
+                    <tr class="data">
+                        <td>Mobile cruser</td>
+
+                        <td><input ng-model="disp.data.trips[1]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[1]" ng-change="ref()" type="number" class=" " />
+                        </td>
+                    </tr>
+                    <tr class="data">
+                        <td>Internal transport-RPL</td>
+
+                        <td><input ng-model="disp.data.trips[2]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[2]" ng-change="ref()" type="number" class=" " />
+                        </td>
+                    </tr>
+                    <tr class="data">
+                        <td>CHP Dumper Feeding</td>
+
+                        <td><input ng-model="disp.data.trips[3]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[3]" ng-change="ref()" type="number" class=" " />
+                        </td>
+                    </tr>
+                    <tr class="data">
+                        <td>CHP Diversion</td>
+
+                        <td><input ng-model="disp.data.trips[4]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[4]" ng-change="ref()" type="number" class=" " />
+                        </td>
+                    </tr>
+                    <tr class="data">
+                        <td>Payloader Rehanding</td>
+
+                        <td><input ng-model="disp.data.trips[5]" ng-change="ref()" type="number" class=" " />
+                        <td><input ng-model="disp.data.qty[5]" ng-change="ref()" type="number" class=" " />
+                        </td>
                     </tr>
                     <tr class="total ">
-                        <td>Total</td>
-                        <td>{{shovels_total.qty.coal+surfaceMiners_total.data.prod}} Te</td>
-                        <td>{{shovels_total.qty.ob+draglines_total.solid_qty}} cum</td>
-                        <td>{{outsourcings_total.data.qty}} cum</td>
-                    </tr>
+                        <td>CHP Crushing</td>
+                        <td></td>
+                        <td>{{disp.chp}} Te</td>
 
+                    </tr>
                 </table>
-            </div>
-            <div class="  summary-section" id="shovel-summary">
+
+                <p class="table-name">HEMM Performance</p>
                 <table class="w3-table-all">
-                    <tr class="">
-                        <td colspan="7">Shovel</td>
-                    </tr>
-                    <tr class="head">
+                    <tr>
                         <td></td>
-                        <td>East Coal</td>
-                        <td>East OB</td>
-                        <td>West Coal</td>
-                        <td>West OB</td>
-                        <td>Total Coal</td>
-                        <td>Total OB</td>
+                        <td>AVL-HRS</td>
+                        <td>WRK-HRS</td>
                     </tr>
-                    <tr class="unit">
+                    <tr>
+                        <td>
+                            Shovel
+                        </td>
                         <td></td>
-                        <td>(Te)</td>
-                        <td>(cum)</td>
-                        <td>(Te)</td>
-                        <td>(cum)</td>
-                        <td>(Te)</td>
-                        <td>(cum)</td>
-                    </tr>
-                    <tr class="data" ng-repeat="x in shovels">
-                        <td class="name-col">{{x.name}}</td>
-                        <td>{{x.qty.east_coal}}</td>
-                        <td>{{x.qty.east_ob}}</td>
-                        <td>{{x.qty.west_coal}}</td>
-                        <td>{{x.qty.west_ob}}</td>
-                        <td>{{x.qty.coal}}</td>
-                        <td>{{x.qty.ob}}</td>
-                    </tr>
-                    <tr class="total ">
-                        <td class="name-col">Total</td>
-                        <td>{{shovels_total.qty.east_coal}} Te</td>
-                        <td>{{shovels_total.qty.east_ob}} cum</td>
-                        <td>{{shovels_total.qty.west_coal}} Te</td>
-                        <td>{{shovels_total.qty.west_ob}} cum</td>
-                        <td>{{shovels_total.qty.coal}} Te</td>
-                        <td>{{shovels_total.qty.ob}} cum</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="  summary-section" id="dragline-summary">
-                <table class="w3-table-all ">
-                    <tr class=" ">
-                        <td colspan="10">Dragline</td>
-                    </tr>
-                    <tr class="head">
-                        <td></td>
-                        <td>Solid</td>
-                        <td>Rehandling</td>
-                        <td>Remark</td>
-                    </tr>
-                    <tr class="unit">
-                        <td></td>
-                        <td>(cum)</td>
-                        <td>(cum)</td>
                         <td></td>
                     </tr>
-                    <tr class="data" ng-repeat="x in draglines">
-                        <td>{{x.name}}</td>
-                        <td>{{x.solid_qty}}</td>
-                        <td>{{x.rehandling_qty}}</td>
-                        <td>{{x.data.remark}}</td>
+                    <tr>
+                        <td>
+                            Dumper
+                        </td>
+                        <td></td>
+                        <td></td>
                     </tr>
-                    <tr class="total ">
-                        <td>Total</td>
-                        <td>{{draglines_total.solid_qty}} cum</td>
-                        <td>{{draglines_total.rehandling_qty}} cum</td>
+                    <tr>
+                        <td>
+                            Dragline
+                        </td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </table>
-            </div>
-            <div class="  summary-section" id="surface-miner-summary">
 
-                <table class="w3-table-all ">
-                    <tr class=" ">
-                        <td colspan="10">Surface Miner</td>
+                <p class="table-name">Current Shift Manpower</p>
+                <table class="w3-table-all">
+                    <tr>
+                        <th> Section </th>
+                        <th>East</th>
+                        <th>West</th>
+                        <th>Total</th>
                     </tr>
-                    <tr class="head">
-                        <td></td>
-                        <td>Working Hrs</td>
-                        <td>Cutting</td>
-                        <td>Production</td>
-                        <td>Remark</td>
+                    <tr ng-repeat="(y,x) in mnp.data">
+                        <td>{{y}}</td>
+                        <td><input type="number" name="" id="" ng-model=x[0] ng-change="ref()"></td>
+                        <td><input type="number" name="" id="" ng-model=x[1] ng-change="ref()"></td>
+                        <td>{{x[2]}}</td>
                     </tr>
-                    <tr class="unit">
-                        <td></td>
-                        <td>(hrs)</td>
-                        <td>(mtrs)</td>
-                        <td>(Te)</td>
-                        <td></td>
-                    </tr>
-                    <tr class="data" ng-repeat="x in surfaceMiners">
-                        <td class="name-col">{{x.name}}</td>
-                        <td>{{x.data.wrk}}</td>
-                        <td>{{x.data.cutting}}</td>
-                        <td>{{x.data.prod}}</td>
-                        <td>{{x.data.remark}}</td>
-                    </tr>
-                    <tr class="total ">
-                        <td class="name-col">Total</td>
-                        <td>{{surfaceMiners_total.data.wrk}} hrs</td>
-                        <td>{{surfaceMiners_total.data.cutting}} mtrs</td>
-                        <td>{{surfaceMiners_total.data.prod}} Te </td>
-                        <td></td>
-                    </tr>
+
                 </table>
             </div>
-            <div class="  summary-section" id="outsourcing-summary">
-                <table class="w3-table-all ">
-                    <tr class=" ">
-                        <td colspan="10">Outsourcing</td>
-                    </tr>
-                    <tr class="head">
-                        <td></td>
-                        <td>Qty</td>
-                        <td>Remark</td>
-                    </tr>
-                    <tr class="unit">
-                        <td></td>
-                        <td>(cum)</td>
-                        <td></td>
-                    </tr>
-                    <tr class="data" ng-repeat="x in outsourcings">
-                        <td class="name-col">{{x.name}}</td>
-                        <td>{{x.data.qty}}</td>
-                        <td>{{x.data.remark}}</td>
-                    </tr>
-                    <tr class="total ">
-                        <td class="name-col">Total</td>
-                        <td>{{outsourcings_total.data.qty}} cum</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+
+
+            <!-- ///////////////////////////////// Template for detailed report  -->
+
+            <template>
+                <div class="  summary-section" id="shovel-summary">
+                    <table class="w3-table-all">
+                        <tr class="">
+                            <td colspan="7">Shovel</td>
+                        </tr>
+                        <tr class="head">
+                            <td></td>
+                            <td>East Coal</td>
+                            <td>East OB</td>
+                            <td>West Coal</td>
+                            <td>West OB</td>
+                            <td>Total Coal</td>
+                            <td>Total OB</td>
+                        </tr>
+                        <tr class="unit">
+                            <td></td>
+                            <td>(Te)</td>
+                            <td>(cum)</td>
+                            <td>(Te)</td>
+                            <td>(cum)</td>
+                            <td>(Te)</td>
+                            <td>(cum)</td>
+                        </tr>
+                        <tr class="data" ng-repeat="x in shovels">
+                            <td class="name-col">{{x.name}}</td>
+                            <td>{{x.qty.east_coal}}</td>
+                            <td>{{x.qty.east_ob}}</td>
+                            <td>{{x.qty.west_coal}}</td>
+                            <td>{{x.qty.west_ob}}</td>
+                            <td>{{x.qty.coal}}</td>
+                            <td>{{x.qty.ob}}</td>
+                        </tr>
+                        <tr class="total ">
+                            <td class="name-col">Total</td>
+                            <td>{{shovels_total.qty.east_coal}} Te</td>
+                            <td>{{shovels_total.qty.east_ob}} cum</td>
+                            <td>{{shovels_total.qty.west_coal}} Te</td>
+                            <td>{{shovels_total.qty.west_ob}} cum</td>
+                            <td>{{shovels_total.qty.coal}} Te</td>
+                            <td>{{shovels_total.qty.ob}} cum</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="  summary-section" id="dragline-summary">
+                    <table class="w3-table-all ">
+                        <tr class=" ">
+                            <td colspan="10">Dragline</td>
+                        </tr>
+                        <tr class="head">
+                            <td></td>
+                            <td>Solid</td>
+                            <td>Rehandling</td>
+                            <td>Remark</td>
+                        </tr>
+                        <tr class="unit">
+                            <td></td>
+                            <td>(cum)</td>
+                            <td>(cum)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="data" ng-repeat="x in draglines">
+                            <td>{{x.name}}</td>
+                            <td>{{x.solid_qty}}</td>
+                            <td>{{x.rehandling_qty}}</td>
+                            <td>{{x.data.remark}}</td>
+                        </tr>
+                        <tr class="total ">
+                            <td>Total</td>
+                            <td>{{draglines_total.solid_qty}} cum</td>
+                            <td>{{draglines_total.rehandling_qty}} cum</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="  summary-section" id="surface-miner-summary">
+
+                    <table class="w3-table-all ">
+                        <tr class=" ">
+                            <td colspan="10">Surface Miner</td>
+                        </tr>
+                        <tr class="head">
+                            <td></td>
+                            <td>Working Hrs</td>
+                            <td>Cutting</td>
+                            <td>Production</td>
+                            <td>Remark</td>
+                        </tr>
+                        <tr class="unit">
+                            <td></td>
+                            <td>(hrs)</td>
+                            <td>(mtrs)</td>
+                            <td>(Te)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="data" ng-repeat="x in surfaceMiners">
+                            <td class="name-col">{{x.name}}</td>
+                            <td>{{x.data.wrk}}</td>
+                            <td>{{x.data.cutting}}</td>
+                            <td>{{x.data.prod}}</td>
+                            <td>{{x.data.remark}}</td>
+                        </tr>
+                        <tr class="total ">
+                            <td class="name-col">Total</td>
+                            <td>{{surfaceMiners_total.data.wrk}} hrs</td>
+                            <td>{{surfaceMiners_total.data.cutting}} mtrs</td>
+                            <td>{{surfaceMiners_total.data.prod}} Te </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="  summary-section" id="outsourcing-summary">
+                    <table class="w3-table-all ">
+                        <tr class=" ">
+                            <td colspan="10">Outsourcing</td>
+                        </tr>
+                        <tr class="head">
+                            <td></td>
+                            <td>Qty</td>
+                            <td>Remark</td>
+                        </tr>
+                        <tr class="unit">
+                            <td></td>
+                            <td>(cum)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="data" ng-repeat="x in outsourcings">
+                            <td class="name-col">{{x.name}}</td>
+                            <td>{{x.data.qty}}</td>
+                            <td>{{x.data.remark}}</td>
+                        </tr>
+                        <tr class="total ">
+                            <td class="name-col">Total</td>
+                            <td>{{outsourcings_total.data.qty}} cum</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </template>
+            <!-- ////////////////////////////////////////////////////////////////// -->
+
         </section>
     </main>
 </body>

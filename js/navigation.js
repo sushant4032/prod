@@ -2,14 +2,16 @@ $(document).ready(begin());
 
 function begin() {
     $(".section").hide();
-    openSection('live');
+    openSection('summary');
 }
 
 
 function openSection(section) {
     $(".section").hide();
     var k = "#" + section;
-    $(k).slideDown(50);
+    let l = $(k);
+    // console.log(l);
+    l.slideDown(50);
     $('.section-selector .tab').removeClass('active-tab');
     $('#' + section+'-tab').addClass('active-tab');
 }

@@ -18,11 +18,8 @@ app.controller('myController', function ($scope, $http) {
 		$scope.downUrl = 'serv/downShift.php';
 	}
 
+	// openSection('shovel-east');
 
-
-
-
-	openSection('shovel-east');
 	appGlobals();
 	presentShift();
 
