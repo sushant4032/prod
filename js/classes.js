@@ -77,28 +77,20 @@ class Shovel {
 
             west_ob_100: this.data.west_ob_100 * this.west_factor[2],
             west_ob_85: this.data.west_ob_85 * this.west_factor[3],
-
-
-            east_coal: this.data.east_coal_100 * this.east_factor[0] + this.data.east_coal_120 * this.east_factor[1] + this.data.east_coal_190 * this.east_factor[2],
-            east_ob: this.data.east_ob_100 * this.east_factor[3] + this.data.east_ob_120 * this.east_factor[4] + this.data.east_ob_190 * this.east_factor[5],
-
-            west_coal: this.data.west_coal_100 * this.west_factor[0] + this.data.west_coal_85 * this.west_factor[1],
-            west_ob: this.data.west_ob_100 * this.west_factor[2] + this.data.west_ob_85 * this.west_factor[3],
-
-            coal:
-                this.data.east_coal_100 * this.east_factor[0] +
-                this.data.east_coal_120 * this.east_factor[1] +
-                this.data.west_coal_190 * this.east_factor[2] +
-                this.data.west_coal_100 * this.west_factor[0] +
-                this.data.west_coal_85 * this.west_factor[1],
-            ob:
-                this.data.east_ob_100 * this.east_factor[3] +
-                this.data.east_ob_120 * this.east_factor[4] +
-                this.data.west_ob_190 * this.east_factor[5] +
-                this.data.west_ob_100 * this.west_factor[2] +
-                this.data.west_ob_85 * this.west_factor[3],
         };
+
+        this.qty.east_coal = this.qty.east_coal_100 + this.qty.east_coal_120 + this.qty.east_coal_190;
+        this.qty.east_ob = this.qty.east_ob_100 + this.qty.east_ob_120 + this.qty.east_ob_190;
+
+        this.qty.west_coal = this.qty.west_coal_100 + this.qty.west_coal_85;
+        this.qty.west_ob = this.qty.west_ob_100 + this.qty.west_ob_85;
+
+        this.qty.coal = this.qty.east_coal + this.qty.west_coal;
+        this.qty.ob = this.qty.east_ob + this.qty.west_ob;
+
     };
+
+
     sum = function (x) {
         this.data.east_coal_100 += x.data.east_coal_100;
         this.data.east_coal_120 += x.data.east_coal_120;
@@ -356,6 +348,11 @@ class Timings {
         this.data = obj;
     }
     inflate = function () {
+
+    }
+    sum = function (obj) {
+        this.avl += obj.avl;
+        this.wrk += obj.wrk;
     }
 
     randomize = function () {

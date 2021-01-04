@@ -130,7 +130,6 @@ app.controller('myController', function ($scope, $http) {
 		$scope.draglines_total = new Dragline('total');
 		$scope.surfaceMiners_total = new SurfaceMiner('total');
 		$scope.outsourcings_total = new Outsourcing('total');
-
 	}
 
 	function getData() {
@@ -207,6 +206,7 @@ app.controller('myController', function ($scope, $http) {
 
 		$scope.packet_string = JSON.stringify($scope.packet);
 		// console.log($scope.packet_string);
+		console.log($scope.shovels_total);
 	}
 
 	function populate() {

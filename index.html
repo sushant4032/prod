@@ -213,8 +213,8 @@
                 </tr>
                 <tr class="total ">
                     <td>Qty</td>
-                    <td>{{draglines_total.solid_qty}} cum</td>
-                    <td>{{draglines_total.rehandling_qty}} cum</td>
+                    <td>{{draglines_total.qty.solid}} cum</td>
+                    <td>{{draglines_total.qty.rehandling}} cum</td>
                     <!-- <td></td> -->
                     <td></td>
                 </tr>
@@ -403,45 +403,45 @@
                     </tr>
                     <tr>
                         <td>East Section</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{shovels_total.qty.east_coal}}</td>
+                        <td>{{shovels_total.qty.east_ob}}</td>
 
                     </tr>
                     <tr>
                         <td>West Section</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{shovels_total.qty.west_coal}}</td>
+                        <td>{{shovels_total.qty.west_ob}}</td>
 
                     </tr>
                     <tr>
                         <td>Total S/D</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{shovels_total.qty.coal}}</td>
+                        <td>{{shovels_total.qty.ob}}</td>
                     </tr>
                     <tr>
                         <td>Surface Miner</td>
-                        <td>{{}}</td>
+                        <td>{{surfaceMiners_total.data.prod}}</td>
                         <td>{{}}</td>
                     </tr>
                     <tr>
                         <td>Dragline</td>
                         <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{draglines_total.qty.solid}}</td>
                     </tr>
                     <tr>
                         <td>Total Deptt</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{shovels_total.qty.coal+surfaceMiners_total.data.prod}}</td>
+                        <td>{{shovels_total.qty.ob+draglines_total.qty.solid}}</td>
                     </tr>
                     <tr>
                         <td>Outsourcing</td>
                         <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{outsourcings_total.data.qty}}</td>
                     </tr>
                     <tr>
                         <td>Grand Total</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                        <td>{{shovels_total.qty.coal+surfaceMiners_total.data.prod}}</td>
+                        <td>{{shovels_total.qty.ob+draglines_total.qty.solid+outsourcings_total.data.qty}}</td>
                     </tr>
                 </table>
 
@@ -449,8 +449,8 @@
                 <table class="data w3-table-all">
                     <tr>
                         <td>Rakes</td>
-                        <td>Silo: {{}}</td>
-                        <td>WW: {{}}</td>
+                        <td>Silo: {{disp.data[0]}}</td>
+                        <td>WW: {{disp.data[3]}}</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -466,44 +466,38 @@
                     <tr class="data">
                         <td>Surface Miner Transport</td>
 
-                        <td><input ng-model="disp.data.trips[0]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[0]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[0]}}</td>
+                        <td>{{disp.data.qty[0]}} </td>
                     </tr>
                     <tr class="data">
                         <td>Mobile cruser</td>
 
-                        <td><input ng-model="disp.data.trips[1]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[1]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[1]}}</td>
+                        <td>{{disp.data.qty[1]}} </td>
                     </tr>
                     <tr class="data">
                         <td>Internal transport-RPL</td>
 
-                        <td><input ng-model="disp.data.trips[2]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[2]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[2]}}</td>
+                        <td>{{disp.data.qty[2]}} </td>
                     </tr>
                     <tr class="data">
                         <td>CHP Dumper Feeding</td>
 
-                        <td><input ng-model="disp.data.trips[3]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[3]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[3]}}</td>
+                        <td>{{disp.data.qty[3]}} </td>
                     </tr>
                     <tr class="data">
                         <td>CHP Diversion</td>
 
-                        <td><input ng-model="disp.data.trips[4]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[4]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[4]}}</td>
+                        <td>{{disp.data.qty[4]}} </td>
                     </tr>
                     <tr class="data">
                         <td>Payloader Rehanding</td>
 
-                        <td><input ng-model="disp.data.trips[5]" ng-change="ref()" type="number" class=" " />
-                        <td><input ng-model="disp.data.qty[5]" ng-change="ref()" type="number" class=" " />
-                        </td>
+                        <td>{{disp.data.trips[5]}}</td>
+                        <td>{{disp.data.qty[5]}} </td>
                     </tr>
                     <tr class="total ">
                         <td>CHP Crushing</td>
@@ -524,22 +518,24 @@
                         <td>
                             Shovel
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>{{this.timings[0].data.avl+this.timings[1].data.avl}}</td>
+                        <td>{{this.timings[0].data.wrk+this.timings[1].data.wrk}}</td>
                     </tr>
                     <tr>
                         <td>
                             Dumper
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>{{this.timings[2].data.avl+this.timings[3].data.avl}}</td>
+                        <td>{{this.timings[2].data.wrk+this.timings[3].data.wrk}}</td>
                     </tr>
                     <tr>
                         <td>
                             Dragline
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>{{this.timings[4].data.avl+this.timings[5].data.avl+this.timings[6].data.avl+this.timings[7].data.avl}}
+                        </td>
+                        <td>{{this.timings[4].data.wrk+this.timings[5].data.wrk+this.timings[6].data.wrk+this.timings[7].data.wrk}}
+                        </td>
                     </tr>
                 </table>
 
@@ -553,8 +549,8 @@
                     </tr>
                     <tr ng-repeat="(y,x) in mnp.data">
                         <td>{{y}}</td>
-                        <td><input type="number" name="" id="" ng-model=x[0] ng-change="ref()"></td>
-                        <td><input type="number" name="" id="" ng-model=x[1] ng-change="ref()"></td>
+                        <td>{{x[0]}}</td>
+                        <td>{{x[1]}}</td>
                         <td>{{x[2]}}</td>
                     </tr>
 
