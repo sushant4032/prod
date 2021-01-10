@@ -26,7 +26,7 @@
     <div class="subheader">
         <div class="shift-selector">
             <button class="shift-nav" ng-click="prev()">&#8678</button>
-            <p>{{i}}</p>
+            <p>{{shiftNameString}}</p>
             <button class="shift-nav" ng-click="next()">&#8680</button>
         </div>
     </div>
@@ -358,7 +358,7 @@
         </section>
 
         <section class="section" id="misc">
-            <p class="table-name">Current Shift Manpower</p>
+            <p class="table-name">{{shiftNameString}} Shift Manpower</p>
             <table class="w3-table-all">
                 <tr>
                     <th> Section </th>
@@ -539,7 +539,7 @@
                     </tr>
                 </table>
 
-                <p class="table-name">Current Shift Manpower</p>
+                <p class="table-name">{{shiftNameString_last}} Shift Manpower</p>
                 <table class="w3-table-all">
                     <tr>
                         <th> Section </th>

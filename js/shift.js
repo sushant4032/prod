@@ -18,77 +18,41 @@ app.controller('myController', function ($scope, $http) {
 		$scope.downUrl = 'serv/downShift.php';
 	}
 
+
+
+	$scope.begin = new Date(2019, 3, 1, 6, 0, 0, 0);
+	$scope.shovel_names = ['P&H-06', 'P&H-07', 'P&H-10',
+		'P&H-11', 'P&H-12', 'P&H-13', 'P&H-14', 'P&H-15',
+		'P&H-16', 'P&H-17', 'P&H-18', 'P&H-19', 'HIM-20', 'PC-TATA', 'KOMATSU PC', 'LAXMAN PC', 'PL-06', 'PL-07'];
+	$scope.dragline_names = ['Jyoti', 'Pawan', 'Vindhya', 'Jwala'];
+	$scope.surface_miner_names = ['LnT'];
+	$scope.outsourcing_names = [
+		'BGR-EAST-APT',
+		'GAJRAJ-WEST-APT',
+		'GAJRAJ-EAST-APB',
+		'GAJRAJ-WEST-APB',
+		'DL-EAST',
+		'DL-WEST'
+	];
+	$scope.seams = ['PUREWA TOP EAST', 'PUREWA TOP WEST', 'PUREWA BOTTOM EAST', 'PUREWA BOTTOM WEST', 'TURRA EAST', 'TURRA WEST'];
+	$scope.timing_names = [
+		'SHOVEL-EAST',
+		'SHOVEL-WEST',
+		'DUMPER-EAST',
+		'DUMPER-WEST',
+		'JYOTI-DL',
+		'PAWAN-DL',
+		'VINDHYS-DL',
+		'JWALA-DL',
+	]
 	// openSection('shovel-east');
 
-	appGlobals();
 	presentShift();
+	appReset();
 
-
-	function appGlobals() {
-		$scope.begin = new Date(2019, 3, 1, 6, 0, 0, 0);
-		$scope.shovel_names = ['P&H-06', 'P&H-07', 'P&H-10',
-			'P&H-11', 'P&H-12', 'P&H-13', 'P&H-14', 'P&H-15',
-			'P&H-16', 'P&H-17', 'P&H-18', 'P&H-19', 'HIM-20', 'PC-TATA', 'KOMATSU PC', 'LAXMAN PC', 'PL-06', 'PL-07'];
-		$scope.dragline_names = ['Jyoti', 'Pawan', 'Vindhya', 'Jwala'];
-		$scope.surface_miner_names = ['LnT'];
-		$scope.outsourcing_names = [
-			'BGR-EAST-APT',
-			'GAJRAJ-WEST-APT',
-			'GAJRAJ-EAST-APB',
-			'GAJRAJ-WEST-APB',
-			'DL-EAST',
-			'DL-WEST'
-		];
-		$scope.seams = ['PUREWA TOP EAST', 'PUREWA TOP WEST', 'PUREWA BOTTOM EAST', 'PUREWA BOTTOM WEST', 'TURRA EAST', 'TURRA WEST'];
-		$scope.timing_names = [
-			'SHOVEL-EAST',
-			'SHOVEL-WEST',
-			'DUMPER-EAST',
-			'DUMPER-WEST',
-			'JYOTI-DL',
-			'PAWAN-DL',
-			'VINDHYS-DL',
-			'JWALA-DL',
-		]
-	}
-
-	function presentShift() {
-		var a = $scope.begin;
-		var b = a.getTime();
-		var c = new Date().getTime();
-		var d = Math.floor((c - b) / (8 * 3600 * 1000));
-		$scope.shift = d;
-		shiftDecode();
-	}
-
-	function shiftDecode() {
-		var days = [
-			'Sunday',
-			'Monday',
-			'Tuesday',
-			'Wednesday',
-			'Thirsday',
-			'Friday',
-			'Saturday'
-		];
-		shifts = ['First', 'Second', 'Night'];
-
-		var a = $scope.begin;
-		var b = a.getTime();
-		var c = $scope.shift;
-		var d = b + (c * 8 * 3600 * 1000) + 1;
-		var e = new Date(d);
-		var f = e.getDate() + '-' + (e.getMonth() + 1) + '-' + e.getFullYear();
-		var g = c % 3;
-		var h = shifts[g];
-		var i = h + " Shift, " + f;
-		$scope.i = i;
-		getData();
-	}
-
-
-
-	function appInitialize() {
+	function appReset() {
+		$scope.shiftNameString = shiftDecode($scope.shift);
+		$scope.shiftNameString_last = shiftDecode($scope.shift);
 		$scope.shovels = [];
 		$scope.draglines = [];
 		$scope.surfaceMiners = [];
@@ -100,7 +64,6 @@ app.controller('myController', function ($scope, $http) {
 		$scope.status = '----------';
 		$scope.packet_string = "ready";
 		$scope.obj = { name: 'scope object' };
-
 
 
 		angular.forEach($scope.shovel_names, function (x) {
@@ -124,16 +87,51 @@ app.controller('myController', function ($scope, $http) {
 			$scope.timings.push(temp);
 		});
 
-
-
 		$scope.shovels_total = new Shovel('total');
 		$scope.draglines_total = new Dragline('total');
 		$scope.surfaceMiners_total = new SurfaceMiner('total');
 		$scope.outsourcings_total = new Outsourcing('total');
 	}
 
+
+
+	function presentShift() {
+		var a = $scope.begin;
+		var b = a.getTime();
+		var c = new Date().getTime();
+		var d = Math.floor((c - b) / (8 * 3600 * 1000));
+		$scope.shift = d;
+		getData();
+	}
+
+	function shiftDecode(shift) {
+		var days = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thirsday',
+			'Friday',
+			'Saturday'
+		];
+		shifts = ['First', 'Second', 'Night'];
+
+		var a = $scope.begin;
+		var b = a.getTime();
+		var c = shift;
+		var d = b + (c * 8 * 3600 * 1000) + 1;
+		var e = new Date(d);
+		var f = e.getDate() + '-' + (e.getMonth() + 1) + '-' + e.getFullYear();
+		var g = c % 3;
+		var h = shifts[g];
+		var i = h + " Shift, " + f;
+		return i;
+	}
+
+
+
 	function getData() {
-		appInitialize();
+		appReset();
 		// fetch();
 	}
 
@@ -255,12 +253,12 @@ app.controller('myController', function ($scope, $http) {
 		if ($scope.shift > 0) {
 			$scope.shift--;
 		}
-		shiftDecode();
+		appReset();
 	}
 
 	function next() {
 		$scope.shift++;
-		shiftDecode();
+		appReset();
 	}
 
 
@@ -299,9 +297,11 @@ app.controller('myController', function ($scope, $http) {
 	$scope.fetch = function () {
 		var s = $scope.shift;
 		console.log("Data requested for " + s);
-		var payload = {};
+		var payload = {
+			shift:s
+		};
 		var req = {
-			method: 'GET',
+			method: 'POST',
 			url: $scope.downUrl,
 			headers: {
 				'Content-Type': 'application/json'
