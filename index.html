@@ -16,7 +16,6 @@
     <script src="js/classes.js?v1" defer></script>
     <script src="js/shift.js?v1" defer></script>
     <link rel="stylesheet" href="css/shift.css?v1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
 </head>
@@ -39,17 +38,17 @@
     </div>
 
     <div class="section-selector">
-        <a id="shovel-east-tab" href="#" onmouseDown="openSection('shovel-east')" class="tab">Shovel
-            East</i></a>
-        <a id="shovel-west-tab" href="#" onmouseDown="openSection('shovel-west')" class="tab  ">Shovel
-            West</i></a>
-        <a id="dragline-tab" href="#" onmouseDown="openSection('dragline')" class="tab  ">Dragline</i></a>
+        <p id="shovel-east-tab"  onmouseDown="openSection('shovel-east')" class="tab">Shovel
+            East</i></p>
+        <p id="shovel-west-tab"  onmouseDown="openSection('shovel-west')" class="tab  ">Shovel
+            West</i></p>
+        <p id="dragline-tab"  onmouseDown="openSection('dragline')" class="tab  ">Dragline</i></p>
 
-        <a id="outsourcing-tab" href="#" onmouseDown="openSection('outsourcing')" class="tab  ">Outsourcing</i></a>
-        <a id="surface-miner-tab" href="#" onmouseDown="openSection('surface-miner')" class="tab  ">SM /
-            Dispatch</i></a>
-        <a id="misc-tab" href="#" onmouseDown="openSection('misc')" class="tab  ">Misc</i></a>
-        <a id="summary-tab" href="#" onmouseDown="openSection('summary')" class="tab  ">Summary</a>
+        <p id="outsourcing-tab"  onmouseDown="openSection('outsourcing')" class="tab  ">Outsourcing</i></p>
+        <p id="surface-miner-tab"  onmouseDown="openSection('surface-miner')" class="tab  ">SM /
+            Dispatch</i></p>
+        <p id="misc-tab"  onmouseDown="openSection('misc')" class="tab  ">Misc</i></p>
+        <p id="summary-tab"  onmouseDown="openSection('summary')" class="tab  ">Summary</p>
     </div>
 
     <main>
@@ -61,7 +60,7 @@
                 </button>
             </div>
 
-            <table class="w3-table-all">
+            <table class="data-table">
                 <tr class="head">
                     <td></td>
                     <td>Coal-100 (trips)</td>
@@ -125,7 +124,7 @@
 
 
 
-            <table class="w3-table-all">
+            <table class="data-table">
                 <tr class="head">
                     <td></td>
                     <td>Coal-100 (trips)</td>
@@ -176,7 +175,7 @@
 
 
         <section class="section " id="dragline">
-            <table class="data w3-table-all">
+            <table class="data data-table">
                 <tr class="head">
                     <td></td>
                     <td>Solid</td>
@@ -223,7 +222,7 @@
 
 
         <section class="section " id="outsourcing">
-            <table class="data w3-table-all">
+            <table class="data data-table">
                 <tr class="head">
                     <td></td>
                     <td>Qty</td>
@@ -250,7 +249,7 @@
 
         <section class="section " id="surface-miner">
             <p class="table-name">Surface Miner</p>
-            <table class="data w3-table-all">
+            <table class="data data-table">
                 <tr class="head">
                     <td></td>
                     <td>Wrk</td>
@@ -283,7 +282,7 @@
 
 
             <p class="table-name">Rakes</p>
-            <table class="data w3-table-all">
+            <table class="data data-table">
 
 
                 <tr class="data">
@@ -295,7 +294,7 @@
             </table>
 
             <p class="table-name">Dispatch</p>
-            <table class="data w3-table-all">
+            <table class="data data-table">
 
                 <tr class="total ">
                     <td></td>
@@ -359,7 +358,7 @@
 
         <section class="section" id="misc">
             <p class="table-name">{{shiftNameString}} Shift Manpower</p>
-            <table class="w3-table-all">
+            <table class="data-table">
                 <tr>
                     <th> Section </th>
                     <th>East</th>
@@ -395,7 +394,7 @@
         <section class="section" id="summary">
             <div>
                 <p class="table-name">Shift Production Summary</p>
-                <table class="w3-table-all">
+                <table class="data-table">
                     <tr class="head">
                         <td></td>
                         <td>Coal (Te)</td>
@@ -446,7 +445,7 @@
                 </table>
 
                 <p class="table-name">Dispatch</p>
-                <table class="data w3-table-all">
+                <table class="data data-table">
                     <tr>
                         <td>Rakes</td>
                         <td>Silo: {{disp.data[0]}}</td>
@@ -508,7 +507,7 @@
                 </table>
 
                 <p class="table-name">HEMM Performance</p>
-                <table class="w3-table-all">
+                <table class="data-table">
                     <tr>
                         <td></td>
                         <td>AVL-HRS</td>
@@ -540,7 +539,7 @@
                 </table>
 
                 <p class="table-name">{{shiftNameString_last}} Shift Manpower</p>
-                <table class="w3-table-all">
+                <table class="data-table">
                     <tr>
                         <th> Section </th>
                         <th>East</th>
@@ -562,7 +561,7 @@
 
             <template>
                 <div class="  summary-section" id="shovel-summary">
-                    <table class="w3-table-all">
+                    <table class="data-table">
                         <tr class="">
                             <td colspan="7">Shovel</td>
                         </tr>
@@ -605,7 +604,7 @@
                     </table>
                 </div>
                 <div class="  summary-section" id="dragline-summary">
-                    <table class="w3-table-all ">
+                    <table class="data-table ">
                         <tr class=" ">
                             <td colspan="10">Dragline</td>
                         </tr>
@@ -637,7 +636,7 @@
                 </div>
                 <div class="  summary-section" id="surface-miner-summary">
 
-                    <table class="w3-table-all ">
+                    <table class="data-table">
                         <tr class=" ">
                             <td colspan="10">Surface Miner</td>
                         </tr>
@@ -672,7 +671,7 @@
                     </table>
                 </div>
                 <div class="  summary-section" id="outsourcing-summary">
-                    <table class="w3-table-all ">
+                    <table class="data-table ">
                         <tr class=" ">
                             <td colspan="10">Outsourcing</td>
                         </tr>

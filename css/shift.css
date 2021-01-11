@@ -13,9 +13,7 @@ body {
 }
 
 section {
-
 	padding: 100px;
-	
 }
 
 input,
@@ -24,7 +22,8 @@ textarea {
 	height: 30px;
 	border: 0.5px solid lightgrey;
 	margin: 2px;
-	padding: 5px 10px;
+	max-width: 10vw;
+	/* padding: 5px 10px; */
 	/* border-radius: 3px; */
 }
 
@@ -66,11 +65,10 @@ button:disabled:hover {
 	color: white;
 	border: none;
 	border-radius: 0;
-	display:flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size:175%;
-
+	font-size: 175%;
 }
 
 .section-selector {
@@ -83,7 +81,26 @@ button:disabled:hover {
 }
 
 .section table {
+	width: 100%;
 	margin-bottom: 50px;
+	border-collapse: collapse;
+}
+
+tr {
+	border: 1px solid rgb(221, 221, 221);
+}
+
+td {
+	padding: 0.5rem;
+	border: none;
+}
+
+.data-table tr:nth-child(odd) {
+	background: rgb(241, 241, 241);
+}
+.data-table tr.head,
+.data-table tr.total {
+	font-weight: 600;
 }
 
 .tab {
@@ -106,8 +123,8 @@ button:disabled:hover {
 	border-bottom-color: white;
 }
 
-.shovel-buttons{
-	margin-bottom:20px;
+.shovel-buttons {
+	margin-bottom: 20px;
 }
 .shovel-buttons button {
 	min-width: 4rem;
@@ -143,14 +160,11 @@ button:focus {
 	border-color: lightgrey;
 }
 
-
-
-.table-name{
-	margin-bottom:10px;
+.table-name {
+	margin-bottom: 10px;
 	/* text-align:center; */
-	font-size:1.25rem;
+	font-size: 1.25rem;
 	font-weight: 600;
-	color:#444;
+	color: #444;
 	text-transform: uppercase;
-
 }
