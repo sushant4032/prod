@@ -34,6 +34,7 @@ class Shovel {
     };
     set = function (obj) {
         this.data = obj;
+        this.inflate();
     }
 
     get = function () {
@@ -62,6 +63,7 @@ class Shovel {
         }
     };
     inflate = function () {
+        console.log('djadajf');
         this.qty = {
 
             east_coal_100: this.data.east_coal_100 * this.east_factor[0],
@@ -228,7 +230,7 @@ class Outsourcing {
         this.data = obj;
     }
     get = function () {
-        return this.obj;
+        return this.data;
     }
 
     sum = function (x) {
@@ -265,11 +267,12 @@ class Dispatch {
 
     }
     get = function () {
-        this.data;
+        let k = this.data;
+        console.log(k);
+        return k;
     }
 
     inflate = function () {
-
         this.chp = this.data.qty[2] + this.data.qty[3] + this.data.qty[5];
     };
 
@@ -299,7 +302,6 @@ class Manpower {
             'DOZER OPTR': [null, null],
             'GRADER OPTR': [null, null],
             'CABLE MAN': [null, null],
-            'and shand': [null, null],
         }
     }
 
@@ -323,7 +325,6 @@ class Manpower {
             'DOZER OPTR': [ran(), ran()],
             'GRADER OPTR': [ran(), ran()],
             'CABLE MAN': [ran(), ran()],
-            'and shand': [ran(), ran()],
         }
     }
 

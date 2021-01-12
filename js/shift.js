@@ -161,8 +161,8 @@ app.controller('myController', function ($scope, $http) {
 			draglines: [],
 			surfaceMiners: [],
 			outsourcings: [],
-			disp: $scope.disp,
-			mnp: $scope.mnp,
+			disp: $scope.disp.get(),
+			mnp: $scope.mnp.get(),
 			timings: []
 		};
 		$scope.shovels_total.initialize();
@@ -298,7 +298,7 @@ app.controller('myController', function ($scope, $http) {
 		var s = $scope.shift;
 		console.log("Data requested for " + s);
 		var payload = {
-			shift:s
+			shift: s
 		};
 		var req = {
 			method: 'POST',
@@ -313,6 +313,29 @@ app.controller('myController', function ($scope, $http) {
 			function (res) {
 				console.log(res.data);
 				e = res.data;
+				console.dir(e);
+
+
+				appReset();
+				e.shovels.forEach((obj, i) => {
+					$scope.shovels[i].set(obj);
+				})
+				e.draglines.forEach((obj, i) => {
+					$scope.draglines[i].set(obj);
+				})
+				e.outsourcings.forEach((obj, i) => {
+
+					$scope.outsourcings[i].set(obj);
+				})
+				e.timings.forEach((obj, i) => {
+
+					$scope.timings[i].set(obj);
+				})
+				$scope.disp.set(e.disp);
+				$scope.mnp.set(e.mnp);
+				ref();
+
+
 				// let remoteVer = +e.ver || 0;
 				// let localVer = +localStorage.getItem('localVer') || 0;
 				// if (remoteVer != localVer) {
@@ -323,6 +346,7 @@ app.controller('myController', function ($scope, $http) {
 			},
 			function () {
 				console.log("fetch failed");
+				console.log(req);
 			})
 	}
 

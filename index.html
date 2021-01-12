@@ -21,6 +21,21 @@
 </head>
 
 <body ng-app="myApp" ng-controller="myController">
+    <header>
+        <button class="side-show">
+            M
+        </button>
+        <div class="date-navigator">
+            <input type="date">
+        </div>
+        <ul class="shift-navigator">
+            <li>First</li>
+            <li>Second</li>
+            <li>Night</li>
+            <li>Dispatch</li>
+            <li>Summary</li>
+        </ul>
+    </header>
 
     <div class="subheader">
         <div class="shift-selector">
@@ -38,17 +53,17 @@
     </div>
 
     <div class="section-selector">
-        <p id="shovel-east-tab"  onmouseDown="openSection('shovel-east')" class="tab">Shovel
+        <p id="shovel-east-tab" onmouseDown="openSection('shovel-east')" class="tab">Shovel
             East</i></p>
-        <p id="shovel-west-tab"  onmouseDown="openSection('shovel-west')" class="tab  ">Shovel
+        <p id="shovel-west-tab" onmouseDown="openSection('shovel-west')" class="tab  ">Shovel
             West</i></p>
-        <p id="dragline-tab"  onmouseDown="openSection('dragline')" class="tab  ">Dragline</i></p>
+        <p id="dragline-tab" onmouseDown="openSection('dragline')" class="tab  ">Dragline</i></p>
 
-        <p id="outsourcing-tab"  onmouseDown="openSection('outsourcing')" class="tab  ">Outsourcing</i></p>
-        <p id="surface-miner-tab"  onmouseDown="openSection('surface-miner')" class="tab  ">SM /
+        <p id="outsourcing-tab" onmouseDown="openSection('outsourcing')" class="tab  ">Outsourcing</i></p>
+        <p id="surface-miner-tab" onmouseDown="openSection('surface-miner')" class="tab  ">SM /
             Dispatch</i></p>
-        <p id="misc-tab"  onmouseDown="openSection('misc')" class="tab  ">Misc</i></p>
-        <p id="summary-tab"  onmouseDown="openSection('summary')" class="tab  ">Summary</p>
+        <p id="misc-tab" onmouseDown="openSection('misc')" class="tab  ">Misc</i></p>
+        <p id="summary-tab" onmouseDown="openSection('summary')" class="tab  ">Summary</p>
     </div>
 
     <main>

@@ -168,3 +168,87 @@ button:focus {
 	color: #444;
 	text-transform: uppercase;
 }
+
+
+
+.frame{
+    width:99vw;
+    height:99vh;
+    margin:0.5vh 0.5vw;
+    border:1px solid lightgrey;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+header{
+    background:lightgrey;
+    min-height:5vh;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.shift-navigator{
+    flex-grow:1;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.shift-navigator li{
+    width:100px;
+    height:25px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid grey;
+    list-style-type:none;
+    cursor:pointer;
+    border-radius:15px;
+    background:rgba(26, 26, 26, 0.8);
+    color:white;
+}
+
+.shift-navigator li:hover{
+    background:rgb(136, 136, 245);
+}
+
+main{
+    flex-grow:1;
+    display:flex;
+
+}
+
+div.side{
+    width:clamp(150px, 10vw, 350px);
+    background:lightgrey;
+}
+
+button.side-show{
+    width:30px;
+    height:30px;
+    padding:3px;
+    margin:0 110px 0px 10px;
+}
+
+
+
+footer{
+    min-height:5%;
+    background:lightgrey;
+}
+
+.side li{
+    /* background:yellow; */
+    border-bottom:1px solid rgb(179, 176, 176);
+    padding:10px;
+}
+
+.side li:hover{
+    background:rgb(167, 167, 167);
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}

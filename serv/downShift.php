@@ -15,7 +15,7 @@
     foreach($tempArray as $value){
         if($value->shift==$shift){
              echo json_encode($value);
-            break;
+            exit;
         }
     }
     echo "No data found";
